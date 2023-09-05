@@ -32,7 +32,7 @@
 .header_item{
     width: 25px;
     height: 25px;
-    background-color: var(--secondary_color);
+    background-color: rgb(var(--secondary_color));
     display: flex;
     justify-content: center;
     align-items: center;
