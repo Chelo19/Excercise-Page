@@ -1,0 +1,10 @@
+:root{
+    --primary_color: #A084E8;
+    --secondary_color: #645CBB;
+    --terciary_color: #BFACE2;
+}
+
+.main_app{
+    width: 100vw;
+    height: 100vh;
+}
