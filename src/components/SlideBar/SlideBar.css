@@ -6,15 +6,17 @@
 .slide_bar_container{
     width: 100%;
     display: flex;
-    gap: 15px;
-    padding: 0 15px;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 12px;
     font-size: 18px;
     overflow: scroll;
 }
 
 .slide_bar_item{
     background-color: rgba(var(--primary_color), 0.3);
-    color: rgb(var(--primary_color));
+    color: rgba(var(--primary_color), 0.8);
     border-radius: 10px;
-    padding: 2px 15px;
+    padding: 2px 12px;
+    white-space: nowrap;
 }

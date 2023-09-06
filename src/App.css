@@ -3,7 +3,11 @@
 :root{
     --primary_color: 160, 132, 232;
     --secondary_color: 100, 92, 187;
-    --terciary_color: #BFACE2;
+    --terciary_color: 191, 172, 226;
+    --nav_bar_height: 56px;
+    --bs-breadcrumb-divider: '>';
+    --individual_item_height: 81px;
+    --background_color: #fff;
 }
 
 .main_app{
