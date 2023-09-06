@@ -1,4 +1,21 @@
+import { useState } from "react";
+
 function NavBar(){
+
+    // const [term, setTerm] = useState('');
+    // const [filteredData, setFilteredData] = useState(data);
+  
+    // const handleInputChange = (event) => {
+    //   const searchTerm = event.target.value;
+    //   setTerm(searchTerm);
+  
+    //   // Filtrar el JSON según el término de búsqueda
+    //   const filtered = data.filter((item) =>
+    //     item.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    //   );
+    //   setFilteredData(filtered);
+    // };
+
     return(
         <nav className="navbar bg-body-tertiary fixed-top">
             <div className="container-fluid">
@@ -34,8 +51,8 @@ function NavBar(){
                     </li>
                     </ul>
                     <form className="d-flex mt-3" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                        <input className="form-control me-2" id="form-control-primary" type="search" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success" id="btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
                 </div>

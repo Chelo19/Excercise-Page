@@ -1,27 +1,22 @@
 import { useState } from 'react';
-import AllExcercisesJson from '../../assets/all_excercises.json';
 import './ExcercisesContainer.css'
 
-function ItemsContainer(){
-
+function ExcercisesContainer({ data }: { data : any }){
+    
     const itemsPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
   
-    // Calcula el índice inicial y final de los elementos a mostrar en la página actual
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = currentPage * itemsPerPage;
   
-    // Obtiene los elementos que se mostrarán en la página actual
-    const pageItems = AllExcercisesJson.slice(startIndex, endIndex);
+    const pageItems = data.slice(startIndex, endIndex);
   
-    // Función para avanzar a la siguiente página
     const nextPage = () => {
-        if (endIndex < AllExcercisesJson.length) {
+        if (endIndex < data.length) {
             setCurrentPage(currentPage + 1);
         }
     };
   
-    // Función para retroceder a la página anterior
     const prevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
@@ -34,7 +29,7 @@ function ItemsContainer(){
 
     return(
         <div className='excercises_container'>
-            {pageItems.map((item) => (
+            {pageItems.map((item : any) => (
                     <div className='excercise_item' key={item.id}>
                         <div className='excercise_item_info'>
                             <span>{Capitalize(item.name)}</span>
@@ -50,18 +45,32 @@ function ItemsContainer(){
                 ))
             }
             <div className='excercises_navigation'>
-                <span className='excercises_navigation_info'>Showing results {currentPage * itemsPerPage - itemsPerPage + 1} - {currentPage * itemsPerPage + pageItems.length - itemsPerPage} of {AllExcercisesJson.length} total</span>
-                <div className='excercises_navigation_buttons'>
-                    <button onClick={prevPage} disabled={currentPage === 1} className='excercises_navigation_individual_button' id='excercises_navigation_individual_button_prev'>
-                        Prev
-                    </button>
-                    <button onClick={nextPage} disabled={endIndex >= AllExcercisesJson.length} className='excercises_navigation_individual_button' id='excercises_navigation_individual_button_next'>
-                        Next
-                    </button>
-                </div>
+                {data.length > 0 ?
+                    <>
+                        <span className='excercises_navigation_info'>Showing results {currentPage * itemsPerPage - itemsPerPage + 1} - {currentPage * itemsPerPage + pageItems.length - itemsPerPage} of {data.length} total</span>
+                        <div className='excercises_navigation_buttons'>
+                            <button onClick={prevPage} disabled={currentPage === 1} className='excercises_navigation_individual_button' id='excercises_navigation_individual_button_prev'>
+                                Prev
+                            </button>
+                            {data.length < itemsPerPage ? 
+                                <button onClick={nextPage} disabled={true} className='excercises_navigation_individual_button' id='excercises_navigation_individual_button_next'>
+                                    Next
+                                </button>
+                                :
+                                <button onClick={nextPage} disabled={endIndex >= data.length} className='excercises_navigation_individual_button' id='excercises_navigation_individual_button_next'>
+                                    Next
+                                </button>
+                            }
+                        </div>
+                    </>
+                    :
+                    <>
+                        <span className='excercises_navigation_info'>No se encuentran resultados</span>
+                    </>
+                }
             </div>
         </div>
     );
 }
 
-export default ItemsContainer;
+export default ExcercisesContainer;
