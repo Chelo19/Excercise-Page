@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Upper Body",
+        "bodyParts": ["back", "chest", "shoulders", "upper arms", "lower arms", "neck", "waist"]
+    },
+    {
+        "name": "Lower Body",
+        "bodyParts": ["upper legs","lower legs"]
+    },
+    {
+        "name": "Cardio",
+        "bodyParts": ["cardio"]
+    }
+]

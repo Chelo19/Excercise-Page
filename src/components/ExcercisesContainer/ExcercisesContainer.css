@@ -70,6 +70,7 @@
 
 .excercises_navigation_info{
     color: rgba(var(--primary_color), 0.7);
+    padding: 0 0 0 3px;
 }
 
 .excercises_navigation_buttons{

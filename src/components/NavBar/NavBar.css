@@ -1,0 +1,9 @@
+#nav_bar_list{
+    font-size: 26px;
+    padding-left: 3px;
+}
+
+#nav_link_inherit{
+    color: inherit;
+    color: rgba(var(--primary_color), 1);
+}

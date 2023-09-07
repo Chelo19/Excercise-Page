@@ -5,3 +5,20 @@
     justify-content: center;
     gap: 5px;
 }
+
+.free_search_split_buttons{
+    display: flex;
+    gap: 10px;
+    padding: 0 12px;
+    width: 100%;
+}
+
+.free_search_split_buttons div{
+    padding: 0;
+}
+
+.free_search_current_filter{
+    margin-top: 10px;
+    padding: 0 15px;
+    color: rgba(var(--secondary_color), 1);
+}

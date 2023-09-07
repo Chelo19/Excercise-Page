@@ -4,10 +4,17 @@
     --primary_color: 160, 132, 232;
     --secondary_color: 100, 92, 187;
     --terciary_color: 191, 172, 226;
+    /* --primary_color: 0, 119, 182; para color azul*/
+    /* --secondary_color: 0, 180, 216; */
+    /* --terciary_color: 144, 224, 239; */
     --nav_bar_height: 56px;
     --bs-breadcrumb-divider: '>';
     --individual_item_height: 81px;
     --background_color: #fff;
+}
+
+*, *::before, *::after {
+    color: rgb(var(--primary_color));
 }
 
 .main_app{

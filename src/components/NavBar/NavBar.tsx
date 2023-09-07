@@ -1,4 +1,7 @@
 import { useState } from "react";
+import BodyPartsByRegionJson from '../../assets/body_parts_by_region.json';
+import MuscleListJson from '../../assets/muscle_list.json';
+import './NavBar.css';
 
 function NavBar(){
 
@@ -16,6 +19,10 @@ function NavBar(){
     //   setFilteredData(filtered);
     // };
 
+    function Capitalize(str: string){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     return(
         <nav className="navbar bg-body-tertiary fixed-top">
             <div className="container-fluid">
@@ -29,29 +36,52 @@ function NavBar(){
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body">
-                    <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                    <ul className="navbar-nav justify-content-end flex-grow-1 pe-3" id="nav_bar_list">
+                        <li className="nav-item">
+                            <a className="nav-link active" id="nav_link_inherit" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="nav_link_inherit" href="#">Link</a>
+                        </li>
+                        <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" id="nav_link_inherit" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            By Body Part
                         </a>
                         <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr className="dropdown-divider"/>
-                        </li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        {BodyPartsByRegionJson.map((region) => {
+                            return(
+                                <>
+                                    <li><a className="dropdown-item" id='region' key={region.name} href="#">{region.name}</a></li>
+                                    {region.bodyParts?.map((bodyPart) => {
+                                        return(
+                                            <>
+                                                <li><a className="dropdown-item bod_part" id='body_part' key={bodyPart} href="#">&nbsp;&nbsp;&nbsp;{Capitalize(bodyPart)}</a></li>
+                                            </>
+                                        );
+                                    })}
+                                    <li><hr className="dropdown-divider"/></li>
+                                </>
+                            );
+                        })}
+                        </ul>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" id="nav_link_inherit" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            By Target Muscle
+                        </a>
+                        <ul className="dropdown-menu">
+                            {MuscleListJson.map((muscle) => {
+                            return(
+                                <>
+                                    <li><a className="dropdown-item" id='region' key={muscle} href="#">{Capitalize(muscle)}</a></li>
+                                </>
+                            );
+                            })}
                         </ul>
                     </li>
                     </ul>
                     <form className="d-flex mt-3" role="search">
-                        <input className="form-control me-2" id="form-control-primary" type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control me-2 focus-ring" id="form-control-primary" type="search" placeholder="Search" aria-label="Search"/>
                         <button className="btn btn-outline-success" id="btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>

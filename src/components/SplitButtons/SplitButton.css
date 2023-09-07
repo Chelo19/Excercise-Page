@@ -1,0 +1,12 @@
+.split_button{
+    width: auto;
+    padding: 0 12px;
+}
+
+#region{
+    color: rgba(var(--secondary_color), 1);
+}
+
+#body_part{
+    color: rgba(var(--primary_color), 0.7);
+}

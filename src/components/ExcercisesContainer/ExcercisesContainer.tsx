@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import './ExcercisesContainer.css'
 
-function ExcercisesContainer({ data }: { data : any }){
+function ExcercisesContainer({ data, currentPage, setCurrentPage }: { data : any, currentPage: any, setCurrentPage: any }){
     
     const itemsPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(1);
   
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = currentPage * itemsPerPage;
@@ -13,13 +12,13 @@ function ExcercisesContainer({ data }: { data : any }){
   
     const nextPage = () => {
         if (endIndex < data.length) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage(currentPage + 1)
         }
     };
   
     const prevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            setCurrentPage(currentPage - 1)
         }
     };
 
