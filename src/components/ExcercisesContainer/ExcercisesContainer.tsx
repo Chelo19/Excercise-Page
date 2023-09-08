@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './ExcercisesContainer.css'
+import BodyPartsByRegionJson from '../../assets/body_parts_by_region.json';
+import { Link } from 'react-router-dom';
 
 function ExcercisesContainer({ data, currentPage, setCurrentPage }: { data : any, currentPage: any, setCurrentPage: any }){
     
@@ -26,12 +28,29 @@ function ExcercisesContainer({ data, currentPage, setCurrentPage }: { data : any
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    function getRegion(name: string, item: any){
+        let fRegion;
+        let fBodyPart;
+        let fTarget;
+        
+        BodyPartsByRegionJson.forEach(region => {
+            region.bodyParts.forEach(bodyPart => {
+                if(bodyPart == name){
+                    fRegion = region.name;
+                    fBodyPart = bodyPart;
+                    fTarget = item.target;
+                }
+            });
+        });
+        return `/excercise?region=${fRegion}&filter=${fBodyPart}&target=${fTarget}`;
+    }
+
     return(
         <div className='excercises_container'>
             {pageItems.map((item : any) => (
                     <div className='excercise_item' key={item.id}>
                         <div className='excercise_item_info'>
-                            <span>{Capitalize(item.name)}</span>
+                            <Link to={getRegion(item.bodyPart, item)} className='excercise_item_name'>{Capitalize(item.name)}</Link>
                             <div className='excercise_item_belt'>
                                 <span className='excercise_item_body_part'>{Capitalize(item.bodyPart)}</span>
                                 <span className='excercise_item_target'>{Capitalize(item.target)}</span>

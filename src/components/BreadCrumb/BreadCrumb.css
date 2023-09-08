@@ -1,0 +1,9 @@
+#breadcrumb{
+    padding: 0 12px;
+    margin: 0;
+}
+
+#breadcrumb_individual_item{
+    color: rgb(var(--primary_color));
+    text-decoration: none;
+}

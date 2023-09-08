@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Message from "./Message";
 import Alert from "./Alert";
 import FreeSearch from "./pages/FreeSearch/FreeSearch";
@@ -16,8 +18,12 @@ function App(){
   return (
     <div className="main_app">
       <NavBar/>
-      <FreeSearch/>
-      {/* <IndividualExcercise/> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/freesearch" element={<FreeSearch />}/>
+          <Route path="/excercise" element={<IndividualExcercise />}/>
+        </Routes>
+      </BrowserRouter>
       {/* {alertVisible && <Alert onClose={() => setAlertVisibility(false)}>My alert</Alert>} */}
     </div>
   )

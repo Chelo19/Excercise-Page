@@ -1,3 +1,7 @@
 .individual_excercise{
-    padding-top: var(--nav_bar_height);
+    padding-top: calc(var(--nav_bar_height) + 5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
 }

@@ -2,11 +2,19 @@ import './SplitButton.css';
 import MuscleListJson from '../../assets/muscle_list.json';
 import AllExcercisesJson from '../../assets/all_excercises.json';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SplitButtonTarget({ setData, setCurrentPage, setCurrentFilter }: { setData : any, setCurrentPage: any, setCurrentFilter: any }){
 
+    const navigate = useNavigate();
+
     function Capitalize(str: string){
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    const changeParams = (path: string) => {
+        console.log(path);
+        navigate(`?filter=${path}`);
     }
     
     const handleFilterClickTarget = (data : string) => {
@@ -28,7 +36,7 @@ function SplitButtonTarget({ setData, setCurrentPage, setCurrentFilter }: { setD
                     {MuscleListJson.map((muscle) => {
                         return(
                             <>
-                                <li><a className="dropdown-item" id='region' key={muscle} href="#" onClick={() => handleFilterClickTarget(muscle)}>{Capitalize(muscle)}</a></li>
+                                <li><a className="dropdown-item" id='region' key={muscle} onClick={() => {handleFilterClickTarget(muscle); changeParams(muscle)}}>{Capitalize(muscle)}</a></li>
                             </>
                         );
                     })}

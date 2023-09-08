@@ -1,12 +1,19 @@
 import './SplitButton.css';
 import BodyPartsByRegionJson from '../../assets/body_parts_by_region.json';
 import AllExcercisesJson from '../../assets/all_excercises.json';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SplitButtonBodyPart({ setData, setCurrentPage, setCurrentFilter }: { setData : any, setCurrentPage: any, setCurrentFilter: any }){
+    
+    const navigate = useNavigate();
 
     function Capitalize(str: string){
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    const changeParams = (path: string) => {
+        console.log(path);
+        navigate(`?filter=${path}`);
     }
 
     const handleFilterClickRegion = (filters: string[]) => {
@@ -19,11 +26,11 @@ function SplitButtonBodyPart({ setData, setCurrentPage, setCurrentFilter }: { se
                 );
                 finalData = finalData.concat(filteredData);
             });
+            
             setData(finalData);
             setCurrentPage(1);
         } else {
         }
-        
     };
     
     const handleFilterClickBodyPart = (data : string) => {
@@ -45,11 +52,11 @@ function SplitButtonBodyPart({ setData, setCurrentPage, setCurrentFilter }: { se
                     {BodyPartsByRegionJson.map((region) => {
                         return(
                             <>
-                                <li><a className="dropdown-item" id='region' key={region.name} href="#" onClick={() => {handleFilterClickRegion(region.bodyParts); setCurrentFilter(Capitalize(region.name))}}>{region.name}</a></li>
+                                <li><a className="dropdown-item" id='region' key={region.name} onClick={() => {handleFilterClickRegion(region.bodyParts); setCurrentFilter(Capitalize(region.name)); changeParams(region.name)}}>{region.name}</a></li>
                                 {region.bodyParts?.map((bodyPart) => {
                                     return(
                                         <>
-                                            <li><a className="dropdown-item bod_part" id='body_part' key={bodyPart} href="#" onClick={() => handleFilterClickBodyPart(`${bodyPart}`)}>&nbsp;&nbsp;&nbsp;{Capitalize(bodyPart)}</a></li>
+                                            <li><a className="dropdown-item bod_part" id='body_part' key={bodyPart} onClick={() => {handleFilterClickBodyPart(`${bodyPart}`), changeParams(bodyPart)}}>&nbsp;&nbsp;&nbsp;{Capitalize(bodyPart)}</a></li>
                                         </>
                                     );
                                 })}
