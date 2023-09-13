@@ -76,6 +76,10 @@ function FreeSearch(){
         filterJson();
     }, []);
 
+    function Capitalize(str: string){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     return(
         <div className="free_search">
             <SearchBar setData={setData} setCurrentPage={setCurrentPage} currentFilter={currentFilter} setCurrentFilter={setCurrentFilter}/>

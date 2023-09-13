@@ -50,14 +50,15 @@ function ExcercisesContainer({ data, currentPage, setCurrentPage }: { data : any
             {pageItems.map((item : any) => (
                     <div className='excercise_item' key={item.id}>
                         <div className='excercise_item_info'>
-                            <Link to={getRegion(item.bodyPart, item)} className='excercise_item_name'>{Capitalize(item.name)}</Link>
+                            {/* <Link to={getRegion(item.bodyPart, item)} className='excercise_item_name'>{Capitalize(item.name)}</Link> */}
+                            <Link to={`/excercise?id=${item.id}`} className='excercise_item_name'>{Capitalize(item.name)}</Link>
                             <div className='excercise_item_belt'>
                                 <span className='excercise_item_body_part'>{Capitalize(item.bodyPart)}</span>
                                 <span className='excercise_item_target'>{Capitalize(item.target)}</span>
                             </div>
                         </div>
                         <div className='excercise_item_img'>
-                            <img src={item.gifUrl}/>
+                            <img src={`../../../gifs/${item.gifUrl}.gif`}/>
                         </div>
                     </div>
                 ))
