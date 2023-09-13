@@ -2,8 +2,13 @@ import { useState } from "react";
 import BodyPartsByRegionJson from '../../assets/body_parts_by_region.json';
 import MuscleListJson from '../../assets/muscle_list.json';
 import './NavBar.css';
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function NavBar(){
+    const navigate = useNavigate();
+
+    const [isOffCanvasOpen, setIsOffCanvasOpen] = useState('');
 
     // const [term, setTerm] = useState('');
     // const [filteredData, setFilteredData] = useState(data);
@@ -30,7 +35,7 @@ function NavBar(){
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="offcanvas offcanvas-end" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div className={`offcanvas offcanvas-end ${isOffCanvasOpen}`} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -51,11 +56,11 @@ function NavBar(){
                         {BodyPartsByRegionJson.map((region) => {
                             return(
                                 <>
-                                    <li><a className="dropdown-item" id='region' key={region.name} href="#">{region.name}</a></li>
+                                    <li><Link to={`/freesearch?filter=${region.name}`} className="dropdown-item" id='region' key={region.name}>{region.name}</Link></li>
                                     {region.bodyParts?.map((bodyPart) => {
                                         return(
                                             <>
-                                                <li><a className="dropdown-item bod_part" id='body_part' key={bodyPart} href="#">&nbsp;&nbsp;&nbsp;{Capitalize(bodyPart)}</a></li>
+                                                <li><Link to={`/freesearch?filter=${bodyPart}`} className="dropdown-item bod_part" id='body_part' key={bodyPart}>&nbsp;&nbsp;&nbsp;{Capitalize(bodyPart)}</Link></li>
                                             </>
                                         );
                                     })}
@@ -73,7 +78,7 @@ function NavBar(){
                             {MuscleListJson.map((muscle) => {
                             return(
                                 <>
-                                    <li><a className="dropdown-item" id='region' key={muscle} href="#">{Capitalize(muscle)}</a></li>
+                                    <li key={muscle}><Link to={`/freesearch?filter=${muscle}`} className="dropdown-item" id='region'>{Capitalize(muscle)}</Link></li>
                                 </>
                             );
                             })}

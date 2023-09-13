@@ -47,7 +47,7 @@ function FreeSearch(){
             );
             setData(filteredData);
         }
-      };
+    };
 
     const isRegion = (region: any) => {
         if (Array.isArray(region.bodyParts)) {

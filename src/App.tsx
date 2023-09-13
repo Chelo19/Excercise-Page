@@ -17,8 +17,8 @@ function App(){
 
   return (
     <div className="main_app">
-      <NavBar/>
       <BrowserRouter>
+        <NavBar/>
         <Routes>
           <Route path="/freesearch" element={<FreeSearch />}/>
           <Route path="/excercise" element={<IndividualExcercise />}/>
